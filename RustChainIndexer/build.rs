@@ -52,8 +52,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     src.push("proto/tendermint/blockchain/types.proto");
     config.compile(&src[..],&["proto/"])?;                                                
 
+
     fs::rename("src/proto/tendermint.types.rs", "src/proto/tendermint_types.rs");
     fs::rename("src/proto/tendermint.version.rs", "src/proto/tendermint_version.rs");
+    fs::rename("src/proto/tendermint.blockchain.rs", "src/proto/tendermint_blockchain.rs");
+    fs::rename("src/proto/tendermint.crypto.rs", "src/proto/tendermint_crypto.rs");
+    fs::rename("src/proto/tendermint.abci.rs", "src/proto/tendermint_abci.rs");
 
     Ok(())                                                                                            
 } 
