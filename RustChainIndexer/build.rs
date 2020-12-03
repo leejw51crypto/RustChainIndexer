@@ -59,5 +59,19 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     fs::rename("src/proto/tendermint.crypto.rs", "src/proto/tendermint_crypto.rs");
     fs::rename("src/proto/tendermint.abci.rs", "src/proto/tendermint_abci.rs");
 
+    fs::rename("src/proto/cosmos.bank.v1beta1.rs", "src/proto/cosmos_bank_v1beta1.rs");
+    fs::rename("src/proto/cosmos.auth.v1beta1.rs", "src/proto/cosmos_auth_v1beta1.rs");
+    fs::rename("src/proto/cosmos.staking.v1beta1.rs", "src/proto/cosmos_staking_v1beta1.rs");
+    fs::rename("src/proto/cosmos.slashing.v1beta1.rs", "src/proto/cosmos_slashing_v1beta1.rs");
+    fs::rename("src/proto/cosmos.tx.v1beta1.rs", "src/proto/cosmos_tx_v1beta1.rs");
+    fs::rename("src/proto/cosmos.tx.signing.v1beta1.rs", "src/proto/cosmos_tx_signing_v1beta1.rs");
+
+
+    fs::rename("src/proto/cosmos.gov.v1beta1.rs", "src/proto/cosmos_gov_v1beta1.rs");
+    fs::rename("src/proto/cosmos.mint.v1beta1.rs", "src/proto/cosmos_mint_v1beta1.rs");
+    fs::rename("src/proto/cosmos.upgrade.v1beta1.rs", "src/proto/cosmos_upgrade_v1beta1.rs");
+    fs::rename("src/proto/cosmos.vesting.v1beta1.rs", "src/proto/cosmos_vesting_v1beta1.rs");
+    fs::rename("src/proto/cosmos.distribution.v1beta1.rs", "src/proto/cosmos_distribution_v1beta1.rs");
+
     Ok(())                                                                                            
 } 

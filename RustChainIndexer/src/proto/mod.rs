@@ -1,3 +1,11 @@
+pub mod cosmos_auth_v1beta1;
+pub mod cosmos_bank_v1beta1;
+pub mod cosmos_gov_v1beta1;
+pub mod cosmos_mint_v1beta1;
+pub mod cosmos_tx_signing_v1beta1;
+pub mod cosmos_tx_v1beta1;
+pub mod cosmos_upgrade_v1beta1;
+pub mod cosmos_vesting_v1beta1;
 pub mod tendermint_abci;
 pub mod tendermint_blockchain;
 pub mod tendermint_crypto;
