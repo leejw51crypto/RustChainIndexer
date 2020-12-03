@@ -1,3 +1,4 @@
+use std::fs;
 fn main() -> Result<(), Box<dyn std::error::Error>> {                                                 
     let config = tonic_build::configure().out_dir("src/proto");                                             
     let mut src = Vec::<&str>::new();
@@ -50,5 +51,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     src.push("proto/tendermint/types/events.proto");
     src.push("proto/tendermint/blockchain/types.proto");
     config.compile(&src[..],&["proto/"])?;                                                
+
+    fs::rename("src/proto/tendermint.types.rs", "src/proto/tendermint_types.rs");
+    fs::rename("src/proto/tendermint.version.rs", "src/proto/tendermint_version.rs");
+
     Ok(())                                                                                            
 } 
