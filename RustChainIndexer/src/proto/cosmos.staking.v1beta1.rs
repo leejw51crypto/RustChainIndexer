@@ -914,7 +914,6 @@ pub mod query_server {
     }
     #[doc = " Query defines the gRPC querier service."]
     #[derive(Debug)]
-    #[doc(hidden)]
     pub struct QueryServer<T: Query> {
         inner: _Inner<T>,
     }
@@ -957,7 +956,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryValidatorsRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.validators(request).await };
+                            let fut = async move { (*inner).validators(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -988,7 +987,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryValidatorRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.validator(request).await };
+                            let fut = async move { (*inner).validator(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1022,7 +1021,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryValidatorDelegationsRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.validator_delegations(request).await };
+                            let fut = async move { (*inner).validator_delegations(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1059,8 +1058,9 @@ pub mod query_server {
                             >,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut =
-                                async move { inner.validator_unbonding_delegations(request).await };
+                            let fut = async move {
+                                (*inner).validator_unbonding_delegations(request).await
+                            };
                             Box::pin(fut)
                         }
                     }
@@ -1091,7 +1091,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryDelegationRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.delegation(request).await };
+                            let fut = async move { (*inner).delegation(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1125,7 +1125,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryUnbondingDelegationRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.unbonding_delegation(request).await };
+                            let fut = async move { (*inner).unbonding_delegation(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1159,7 +1159,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryDelegatorDelegationsRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.delegator_delegations(request).await };
+                            let fut = async move { (*inner).delegator_delegations(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1196,8 +1196,9 @@ pub mod query_server {
                             >,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut =
-                                async move { inner.delegator_unbonding_delegations(request).await };
+                            let fut = async move {
+                                (*inner).delegator_unbonding_delegations(request).await
+                            };
                             Box::pin(fut)
                         }
                     }
@@ -1230,7 +1231,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryRedelegationsRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.redelegations(request).await };
+                            let fut = async move { (*inner).redelegations(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1264,7 +1265,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryDelegatorValidatorsRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.delegator_validators(request).await };
+                            let fut = async move { (*inner).delegator_validators(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1298,7 +1299,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryDelegatorValidatorRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.delegator_validator(request).await };
+                            let fut = async move { (*inner).delegator_validator(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1331,7 +1332,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryHistoricalInfoRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.historical_info(request).await };
+                            let fut = async move { (*inner).historical_info(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1362,7 +1363,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryPoolRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.pool(request).await };
+                            let fut = async move { (*inner).pool(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1393,7 +1394,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryParamsRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.params(request).await };
+                            let fut = async move { (*inner).params(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1702,7 +1703,6 @@ pub mod msg_server {
     }
     #[doc = " Msg defines the staking Msg service."]
     #[derive(Debug)]
-    #[doc(hidden)]
     pub struct MsgServer<T: Msg> {
         inner: _Inner<T>,
     }
@@ -1745,7 +1745,7 @@ pub mod msg_server {
                             request: tonic::Request<super::MsgCreateValidator>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.create_validator(request).await };
+                            let fut = async move { (*inner).create_validator(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1776,7 +1776,7 @@ pub mod msg_server {
                             request: tonic::Request<super::MsgEditValidator>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.edit_validator(request).await };
+                            let fut = async move { (*inner).edit_validator(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1807,7 +1807,7 @@ pub mod msg_server {
                             request: tonic::Request<super::MsgDelegate>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.delegate(request).await };
+                            let fut = async move { (*inner).delegate(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1838,7 +1838,7 @@ pub mod msg_server {
                             request: tonic::Request<super::MsgBeginRedelegate>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.begin_redelegate(request).await };
+                            let fut = async move { (*inner).begin_redelegate(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1869,7 +1869,7 @@ pub mod msg_server {
                             request: tonic::Request<super::MsgUndelegate>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.undelegate(request).await };
+                            let fut = async move { (*inner).undelegate(request).await };
                             Box::pin(fut)
                         }
                     }

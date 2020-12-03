@@ -903,7 +903,6 @@ pub mod abci_application_server {
         ) -> Result<tonic::Response<super::ResponseApplySnapshotChunk>, tonic::Status>;
     }
     #[derive(Debug)]
-    #[doc(hidden)]
     pub struct AbciApplicationServer<T: AbciApplication> {
         inner: _Inner<T>,
     }
@@ -946,7 +945,7 @@ pub mod abci_application_server {
                             request: tonic::Request<super::RequestEcho>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.echo(request).await };
+                            let fut = async move { (*inner).echo(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -977,7 +976,7 @@ pub mod abci_application_server {
                             request: tonic::Request<super::RequestFlush>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.flush(request).await };
+                            let fut = async move { (*inner).flush(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1008,7 +1007,7 @@ pub mod abci_application_server {
                             request: tonic::Request<super::RequestInfo>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.info(request).await };
+                            let fut = async move { (*inner).info(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1039,7 +1038,7 @@ pub mod abci_application_server {
                             request: tonic::Request<super::RequestSetOption>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.set_option(request).await };
+                            let fut = async move { (*inner).set_option(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1070,7 +1069,7 @@ pub mod abci_application_server {
                             request: tonic::Request<super::RequestDeliverTx>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.deliver_tx(request).await };
+                            let fut = async move { (*inner).deliver_tx(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1101,7 +1100,7 @@ pub mod abci_application_server {
                             request: tonic::Request<super::RequestCheckTx>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.check_tx(request).await };
+                            let fut = async move { (*inner).check_tx(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1132,7 +1131,7 @@ pub mod abci_application_server {
                             request: tonic::Request<super::RequestQuery>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.query(request).await };
+                            let fut = async move { (*inner).query(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1163,7 +1162,7 @@ pub mod abci_application_server {
                             request: tonic::Request<super::RequestCommit>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.commit(request).await };
+                            let fut = async move { (*inner).commit(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1194,7 +1193,7 @@ pub mod abci_application_server {
                             request: tonic::Request<super::RequestInitChain>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.init_chain(request).await };
+                            let fut = async move { (*inner).init_chain(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1227,7 +1226,7 @@ pub mod abci_application_server {
                             request: tonic::Request<super::RequestBeginBlock>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.begin_block(request).await };
+                            let fut = async move { (*inner).begin_block(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1258,7 +1257,7 @@ pub mod abci_application_server {
                             request: tonic::Request<super::RequestEndBlock>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.end_block(request).await };
+                            let fut = async move { (*inner).end_block(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1292,7 +1291,7 @@ pub mod abci_application_server {
                             request: tonic::Request<super::RequestListSnapshots>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.list_snapshots(request).await };
+                            let fut = async move { (*inner).list_snapshots(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1326,7 +1325,7 @@ pub mod abci_application_server {
                             request: tonic::Request<super::RequestOfferSnapshot>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.offer_snapshot(request).await };
+                            let fut = async move { (*inner).offer_snapshot(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1360,7 +1359,7 @@ pub mod abci_application_server {
                             request: tonic::Request<super::RequestLoadSnapshotChunk>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.load_snapshot_chunk(request).await };
+                            let fut = async move { (*inner).load_snapshot_chunk(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1394,7 +1393,7 @@ pub mod abci_application_server {
                             request: tonic::Request<super::RequestApplySnapshotChunk>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.apply_snapshot_chunk(request).await };
+                            let fut = async move { (*inner).apply_snapshot_chunk(request).await };
                             Box::pin(fut)
                         }
                     }

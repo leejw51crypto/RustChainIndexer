@@ -150,7 +150,6 @@ pub mod msg_server {
     }
     #[doc = " Msg defines the bank Msg service."]
     #[derive(Debug)]
-    #[doc(hidden)]
     pub struct MsgServer<T: Msg> {
         inner: _Inner<T>,
     }
@@ -195,7 +194,7 @@ pub mod msg_server {
                             request: tonic::Request<super::MsgCreateVestingAccount>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.create_vesting_account(request).await };
+                            let fut = async move { (*inner).create_vesting_account(request).await };
                             Box::pin(fut)
                         }
                     }

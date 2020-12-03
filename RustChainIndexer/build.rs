@@ -1,6 +1,7 @@
 fn main() -> Result<(), Box<dyn std::error::Error>> {                                                 
     let config = tonic_build::configure().out_dir("src/proto");                                             
     let mut src = Vec::<&str>::new();
+
     src.push("proto/cosmos/auth/v1beta1/auth.proto");
     src.push("proto/cosmos/auth/v1beta1/genesis.proto");
     src.push("proto/cosmos/auth/v1beta1/query.proto");
@@ -37,6 +38,17 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     src.push("proto/cosmos/gov/v1beta1/query.proto");
     src.push("proto/cosmos/gov/v1beta1/tx.proto");
 
+
+    src.push("proto/cosmos/upgrade/v1beta1/upgrade.proto");
+    src.push("proto/cosmos/upgrade/v1beta1/query.proto");
+
+    src.push("proto/tendermint/types/types.proto");
+    src.push("proto/tendermint/types/validator.proto");
+    src.push("proto/tendermint/types/evidence.proto");
+    src.push("proto/tendermint/types/params.proto");
+    src.push("proto/tendermint/types/block.proto");
+    src.push("proto/tendermint/types/events.proto");
+    src.push("proto/tendermint/blockchain/types.proto");
     config.compile(&src[..],&["proto/"])?;                                                
     Ok(())                                                                                            
 } 

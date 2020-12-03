@@ -319,7 +319,6 @@ pub mod service_server {
     }
     #[doc = " Service defines a gRPC service for interacting with transactions."]
     #[derive(Debug)]
-    #[doc(hidden)]
     pub struct ServiceServer<T: Service> {
         inner: _Inner<T>,
     }
@@ -362,7 +361,7 @@ pub mod service_server {
                             request: tonic::Request<super::SimulateRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.simulate(request).await };
+                            let fut = async move { (*inner).simulate(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -393,7 +392,7 @@ pub mod service_server {
                             request: tonic::Request<super::GetTxRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.get_tx(request).await };
+                            let fut = async move { (*inner).get_tx(request).await };
                             Box::pin(fut)
                         }
                     }

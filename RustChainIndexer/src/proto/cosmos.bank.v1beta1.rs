@@ -333,7 +333,6 @@ pub mod query_server {
     }
     #[doc = " Query defines the gRPC querier service."]
     #[derive(Debug)]
-    #[doc(hidden)]
     pub struct QueryServer<T: Query> {
         inner: _Inner<T>,
     }
@@ -376,7 +375,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryBalanceRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.balance(request).await };
+                            let fut = async move { (*inner).balance(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -407,7 +406,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryAllBalancesRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.all_balances(request).await };
+                            let fut = async move { (*inner).all_balances(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -438,7 +437,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryTotalSupplyRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.total_supply(request).await };
+                            let fut = async move { (*inner).total_supply(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -469,7 +468,7 @@ pub mod query_server {
                             request: tonic::Request<super::QuerySupplyOfRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.supply_of(request).await };
+                            let fut = async move { (*inner).supply_of(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -500,7 +499,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryParamsRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.params(request).await };
+                            let fut = async move { (*inner).params(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -672,7 +671,6 @@ pub mod msg_server {
     }
     #[doc = " Msg defines the bank Msg service."]
     #[derive(Debug)]
-    #[doc(hidden)]
     pub struct MsgServer<T: Msg> {
         inner: _Inner<T>,
     }
@@ -715,7 +713,7 @@ pub mod msg_server {
                             request: tonic::Request<super::MsgSend>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.send(request).await };
+                            let fut = async move { (*inner).send(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -746,7 +744,7 @@ pub mod msg_server {
                             request: tonic::Request<super::MsgMultiSend>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.multi_send(request).await };
+                            let fut = async move { (*inner).multi_send(request).await };
                             Box::pin(fut)
                         }
                     }

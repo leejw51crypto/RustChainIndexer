@@ -192,7 +192,6 @@ pub mod query_server {
     }
     #[doc = " Query provides defines the gRPC querier service."]
     #[derive(Debug)]
-    #[doc(hidden)]
     pub struct QueryServer<T: Query> {
         inner: _Inner<T>,
     }
@@ -235,7 +234,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryParamsRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.params(request).await };
+                            let fut = async move { (*inner).params(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -266,7 +265,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryInflationRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.inflation(request).await };
+                            let fut = async move { (*inner).inflation(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -299,7 +298,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryAnnualProvisionsRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.annual_provisions(request).await };
+                            let fut = async move { (*inner).annual_provisions(request).await };
                             Box::pin(fut)
                         }
                     }

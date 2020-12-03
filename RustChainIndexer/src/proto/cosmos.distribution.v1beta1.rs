@@ -662,7 +662,6 @@ pub mod query_server {
     }
     #[doc = " Query defines the gRPC querier service for distribution module."]
     #[derive(Debug)]
-    #[doc(hidden)]
     pub struct QueryServer<T: Query> {
         inner: _Inner<T>,
     }
@@ -705,7 +704,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryParamsRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.params(request).await };
+                            let fut = async move { (*inner).params(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -739,8 +738,9 @@ pub mod query_server {
                             request: tonic::Request<super::QueryValidatorOutstandingRewardsRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut =
-                                async move { inner.validator_outstanding_rewards(request).await };
+                            let fut = async move {
+                                (*inner).validator_outstanding_rewards(request).await
+                            };
                             Box::pin(fut)
                         }
                     }
@@ -774,7 +774,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryValidatorCommissionRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.validator_commission(request).await };
+                            let fut = async move { (*inner).validator_commission(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -807,7 +807,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryValidatorSlashesRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.validator_slashes(request).await };
+                            let fut = async move { (*inner).validator_slashes(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -840,7 +840,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryDelegationRewardsRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.delegation_rewards(request).await };
+                            let fut = async move { (*inner).delegation_rewards(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -874,7 +874,8 @@ pub mod query_server {
                             request: tonic::Request<super::QueryDelegationTotalRewardsRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.delegation_total_rewards(request).await };
+                            let fut =
+                                async move { (*inner).delegation_total_rewards(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -908,7 +909,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryDelegatorValidatorsRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.delegator_validators(request).await };
+                            let fut = async move { (*inner).delegator_validators(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -943,7 +944,7 @@ pub mod query_server {
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut =
-                                async move { inner.delegator_withdraw_address(request).await };
+                                async move { (*inner).delegator_withdraw_address(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -976,7 +977,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryCommunityPoolRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.community_pool(request).await };
+                            let fut = async move { (*inner).community_pool(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1228,7 +1229,6 @@ pub mod msg_server {
     }
     #[doc = " Msg defines the distribution Msg service."]
     #[derive(Debug)]
-    #[doc(hidden)]
     pub struct MsgServer<T: Msg> {
         inner: _Inner<T>,
     }
@@ -1273,7 +1273,7 @@ pub mod msg_server {
                             request: tonic::Request<super::MsgSetWithdrawAddress>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.set_withdraw_address(request).await };
+                            let fut = async move { (*inner).set_withdraw_address(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1306,7 +1306,8 @@ pub mod msg_server {
                             request: tonic::Request<super::MsgWithdrawDelegatorReward>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.withdraw_delegator_reward(request).await };
+                            let fut =
+                                async move { (*inner).withdraw_delegator_reward(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1339,8 +1340,9 @@ pub mod msg_server {
                             request: tonic::Request<super::MsgWithdrawValidatorCommission>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut =
-                                async move { inner.withdraw_validator_commission(request).await };
+                            let fut = async move {
+                                (*inner).withdraw_validator_commission(request).await
+                            };
                             Box::pin(fut)
                         }
                     }
@@ -1371,7 +1373,7 @@ pub mod msg_server {
                             request: tonic::Request<super::MsgFundCommunityPool>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.fund_community_pool(request).await };
+                            let fut = async move { (*inner).fund_community_pool(request).await };
                             Box::pin(fut)
                         }
                     }

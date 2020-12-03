@@ -524,7 +524,6 @@ pub mod query_server {
     }
     #[doc = " Query defines the gRPC querier service for gov module"]
     #[derive(Debug)]
-    #[doc(hidden)]
     pub struct QueryServer<T: Query> {
         inner: _Inner<T>,
     }
@@ -567,7 +566,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryProposalRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.proposal(request).await };
+                            let fut = async move { (*inner).proposal(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -598,7 +597,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryProposalsRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.proposals(request).await };
+                            let fut = async move { (*inner).proposals(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -629,7 +628,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryVoteRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.vote(request).await };
+                            let fut = async move { (*inner).vote(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -660,7 +659,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryVotesRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.votes(request).await };
+                            let fut = async move { (*inner).votes(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -691,7 +690,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryParamsRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.params(request).await };
+                            let fut = async move { (*inner).params(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -722,7 +721,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryDepositRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.deposit(request).await };
+                            let fut = async move { (*inner).deposit(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -753,7 +752,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryDepositsRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.deposits(request).await };
+                            let fut = async move { (*inner).deposits(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -784,7 +783,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryTallyResultRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.tally_result(request).await };
+                            let fut = async move { (*inner).tally_result(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -996,7 +995,6 @@ pub mod msg_server {
     }
     #[doc = " Msg defines the bank Msg service."]
     #[derive(Debug)]
-    #[doc(hidden)]
     pub struct MsgServer<T: Msg> {
         inner: _Inner<T>,
     }
@@ -1039,7 +1037,7 @@ pub mod msg_server {
                             request: tonic::Request<super::MsgSubmitProposal>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.submit_proposal(request).await };
+                            let fut = async move { (*inner).submit_proposal(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1070,7 +1068,7 @@ pub mod msg_server {
                             request: tonic::Request<super::MsgVote>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.vote(request).await };
+                            let fut = async move { (*inner).vote(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1101,7 +1099,7 @@ pub mod msg_server {
                             request: tonic::Request<super::MsgDeposit>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.deposit(request).await };
+                            let fut = async move { (*inner).deposit(request).await };
                             Box::pin(fut)
                         }
                     }

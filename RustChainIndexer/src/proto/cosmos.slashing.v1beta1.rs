@@ -244,7 +244,6 @@ pub mod query_server {
     }
     #[doc = " Query provides defines the gRPC querier service"]
     #[derive(Debug)]
-    #[doc(hidden)]
     pub struct QueryServer<T: Query> {
         inner: _Inner<T>,
     }
@@ -287,7 +286,7 @@ pub mod query_server {
                             request: tonic::Request<super::QueryParamsRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.params(request).await };
+                            let fut = async move { (*inner).params(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -318,7 +317,7 @@ pub mod query_server {
                             request: tonic::Request<super::QuerySigningInfoRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.signing_info(request).await };
+                            let fut = async move { (*inner).signing_info(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -349,7 +348,7 @@ pub mod query_server {
                             request: tonic::Request<super::QuerySigningInfosRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.signing_infos(request).await };
+                            let fut = async move { (*inner).signing_infos(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -490,7 +489,6 @@ pub mod msg_server {
     }
     #[doc = " Msg defines the slashing Msg service."]
     #[derive(Debug)]
-    #[doc(hidden)]
     pub struct MsgServer<T: Msg> {
         inner: _Inner<T>,
     }
@@ -533,7 +531,7 @@ pub mod msg_server {
                             request: tonic::Request<super::MsgUnjail>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { inner.unjail(request).await };
+                            let fut = async move { (*inner).unjail(request).await };
                             Box::pin(fut)
                         }
                     }
