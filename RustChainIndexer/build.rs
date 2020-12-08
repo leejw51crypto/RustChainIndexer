@@ -17,7 +17,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     src.push("proto/cosmos/vesting/v1beta1/vesting.proto");
     src.push("proto/cosmos/vesting/v1beta1/tx.proto");
     src.push("proto/cosmos/tx/signing/v1beta1/signing.proto");
-    src.push("proto/cosmos/tx/v1beta1/service.proto");
+    //src.push("proto/cosmos/tx/v1beta1/service.proto");
     src.push("proto/cosmos/tx/v1beta1/tx.proto");
 
     src.push("proto/cosmos/slashing/v1beta1/slashing.proto");
@@ -52,7 +52,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     src.push("proto/tendermint/blockchain/types.proto");
     config.compile(&src[..],&["proto/"])?;                                                
 
-
+/*
     fs::rename("src/proto/tendermint.types.rs", "src/proto/tendermint_types.rs");
     fs::rename("src/proto/tendermint.version.rs", "src/proto/tendermint_version.rs");
     fs::rename("src/proto/tendermint.blockchain.rs", "src/proto/tendermint_blockchain.rs");
@@ -72,6 +72,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     fs::rename("src/proto/cosmos.upgrade.v1beta1.rs", "src/proto/cosmos_upgrade_v1beta1.rs");
     fs::rename("src/proto/cosmos.vesting.v1beta1.rs", "src/proto/cosmos_vesting_v1beta1.rs");
     fs::rename("src/proto/cosmos.distribution.v1beta1.rs", "src/proto/cosmos_distribution_v1beta1.rs");
+    */
 
     Ok(())                                                                                            
 } 

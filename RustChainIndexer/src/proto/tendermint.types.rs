@@ -228,6 +228,42 @@ pub enum SignedMsgType {
     /// Proposals
     Proposal = 32,
 }
+/// DuplicateVoteEvidence contains evidence a validator signed two conflicting
+/// votes.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DuplicateVoteEvidence {
+    #[prost(message, optional, tag = "1")]
+    pub vote_a: ::std::option::Option<Vote>,
+    #[prost(message, optional, tag = "2")]
+    pub vote_b: ::std::option::Option<Vote>,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LightClientAttackEvidence {
+    #[prost(message, optional, tag = "1")]
+    pub conflicting_block: ::std::option::Option<LightBlock>,
+    #[prost(int64, tag = "2")]
+    pub common_height: i64,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Evidence {
+    #[prost(oneof = "evidence::Sum", tags = "1, 2")]
+    pub sum: ::std::option::Option<evidence::Sum>,
+}
+pub mod evidence {
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Sum {
+        #[prost(message, tag = "1")]
+        DuplicateVoteEvidence(super::DuplicateVoteEvidence),
+        #[prost(message, tag = "2")]
+        LightClientAttackEvidence(super::LightClientAttackEvidence),
+    }
+}
+/// EvidenceData contains any evidence of malicious wrong-doing by validators
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EvidenceData {
+    #[prost(message, repeated, tag = "1")]
+    pub evidence: ::std::vec::Vec<Evidence>,
+}
 /// ConsensusParams contains consensus critical parameters that determine the
 /// validity of blocks.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -303,42 +339,6 @@ pub struct HashedParams {
     pub block_max_bytes: i64,
     #[prost(int64, tag = "2")]
     pub block_max_gas: i64,
-}
-/// DuplicateVoteEvidence contains evidence a validator signed two conflicting
-/// votes.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DuplicateVoteEvidence {
-    #[prost(message, optional, tag = "1")]
-    pub vote_a: ::std::option::Option<Vote>,
-    #[prost(message, optional, tag = "2")]
-    pub vote_b: ::std::option::Option<Vote>,
-}
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct LightClientAttackEvidence {
-    #[prost(message, optional, tag = "1")]
-    pub conflicting_block: ::std::option::Option<LightBlock>,
-    #[prost(int64, tag = "2")]
-    pub common_height: i64,
-}
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Evidence {
-    #[prost(oneof = "evidence::Sum", tags = "1, 2")]
-    pub sum: ::std::option::Option<evidence::Sum>,
-}
-pub mod evidence {
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Sum {
-        #[prost(message, tag = "1")]
-        DuplicateVoteEvidence(super::DuplicateVoteEvidence),
-        #[prost(message, tag = "2")]
-        LightClientAttackEvidence(super::LightClientAttackEvidence),
-    }
-}
-/// EvidenceData contains any evidence of malicious wrong-doing by validators
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct EvidenceData {
-    #[prost(message, repeated, tag = "1")]
-    pub evidence: ::std::vec::Vec<Evidence>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Block {

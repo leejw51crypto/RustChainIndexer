@@ -5,6 +5,10 @@ authors = ["jongwhan"]
 edition = "2018"
 
 [dependencies]
+tower = "0.3"
+http = "0.2"
+http-body = "0.3"
+prost-types = "0.6"
 prost = "0.6.1"                                                                                       
 tonic = {version="0.2.0",features = ["tls"]}                                                          
 tokio = {version="0.2.18",features = ["stream", "macros"]}                                            
