@@ -1,4 +1,10 @@
 mod proto;
+
+use proto::tendermint::blockchain::{BlockRequest, BlockResponse};
+
 fn main() {
-    println!("Hello, world!");
+    let m=BlockRequest::default();
+    let m2= BlockResponse::default();
+    println!("request {:?}",m);
+    println!("response {:?}",m2);
 }
