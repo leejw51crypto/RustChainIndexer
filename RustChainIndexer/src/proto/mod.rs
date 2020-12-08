@@ -1,4 +1,5 @@
 pub mod cosmos {
+    include!("cosmos.rs");
     pub mod auth {
         pub mod v1beta1 {
             include!("cosmos.auth.v1beta1.rs");
@@ -13,6 +14,12 @@ pub mod cosmos {
         pub mod abci {
             pub mod v1beta1 {
                 include!("cosmos.base.abci.v1beta1.rs");
+            }
+        }
+
+        pub mod reflection {
+            pub mod v1beta1 {
+                include!("cosmos.base.reflection.v1beta1.rs");
             }
         }
 

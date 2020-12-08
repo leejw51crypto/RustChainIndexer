@@ -20,6 +20,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     //src.push("proto/cosmos/tx/v1beta1/service.proto");
     src.push("proto/cosmos/tx/v1beta1/tx.proto");
 
+    src.push("proto/cosmos/base/reflection/v1beta1/reflection.proto");
+
     src.push("proto/cosmos/slashing/v1beta1/slashing.proto");
     src.push("proto/cosmos/slashing/v1beta1/genesis.proto");
     src.push("proto/cosmos/slashing/v1beta1/query.proto");
@@ -50,6 +52,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     src.push("proto/tendermint/types/block.proto");
     src.push("proto/tendermint/types/events.proto");
     src.push("proto/tendermint/blockchain/types.proto");
+
+    src.push("proto/cosmos/mainservice.proto");
     config.compile(&src[..],&["proto/"])?;                                                
 
 /*
